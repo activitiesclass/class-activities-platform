@@ -79,7 +79,7 @@ function collect(){return [...questions.children].map((card,i)=>{
  const item={id:`q${i+1}`,question:val("q"),answer:val("a"),alternativeAnswers:alternatives.every(x=>!x)?[]:alternatives,hint:val("hint"),difficulty:val("difficulty"),points:Number(val("points")),time:Number(val("time"))};
  if(type==="blockbusters")item.letter=val("letter");
  if(type==="pyramid-knowledge"){item.bloomLevel=Number(val("bloom"));item.bloomName=["التذكر","الفهم","التطبيق","التحليل","التقييم","الإبداع"][item.bloomLevel-1]}
- if(["bomb-timer","quraa-challenge"].includes(type))item.explanation=val("explanation");
+ if(["bomb-timer","quraa-challenge","random-mcq","random-true-false"].includes(type))item.explanation=val("explanation");
  if(type==="axis-challenge"){const options=[item.answer,...alternatives].map((text,i)=>({text,correct:i===0}));for(let n=options.length-1;n>0;n--){const j=Math.floor(Math.random()*(n+1));[options[n],options[j]]=[options[j],options[n]]}return{c:Number(val("axis-category")),p:Number(val("axis-points")),q:item.question,o:options.map(x=>x.text),a:options.findIndex(x=>x.correct),e:val("explanation")}};
  return item
 })}
